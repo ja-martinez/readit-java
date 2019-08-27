@@ -10,6 +10,7 @@ Readit is an alternative to the default Reddit lurking experience. It is aimed a
 * Spring Boot
 * MongoDB
 * MongoClient
+* linkPreview API
   
 ## Features
 
@@ -17,6 +18,7 @@ Readit is an alternative to the default Reddit lurking experience. It is aimed a
 * Register and login as a user
 * Predefined list of subreadits users can post to
 * Filter posts by subreddits
+* if a user includes a link_url, there will be a preview displayed
 
 ## User stories
 
