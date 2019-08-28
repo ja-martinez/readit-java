@@ -54,8 +54,9 @@ Readit is an alternative to the default Reddit lurking experience. It is aimed a
 | /users/{user_id}/comments        | GET         | none         | All comments by user                    | Comments   |
 | /subreadits                      | GET         | none         | All subreadits                          | Subreadits |
 | /subreadits/{subreadit_id}/posts | GET         | none         | All posts in subreadit                  | Posts      |
-| /posts                           | GET         | none         | all posts                               | Posts      |
+| /posts                           | GET         | none         | All posts                               | Posts      |
 | /posts                           | POST        | JSON post    | Post                                    | Posts      |
+| /posts/{post_id}                 | GET         | none         | one post                                | Posts      |
 | /posts/{post_id}                 | PUT         | JSON post    | Post                                    | Posts      |
 | /posts/{post_id}                 | DELETE      | none         | Post                                    | Posts      |
 | /posts/{post_id}/comments/root   | GET         | none         | All root comments in post               | Comments   |
