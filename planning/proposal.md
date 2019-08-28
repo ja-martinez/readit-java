@@ -42,3 +42,23 @@ Readit is an alternative to the default Reddit lurking experience. It is aimed a
 ## Stretch Goals
 
 * add post threading functionality - comments can have comments
+* Add Pagination
+  
+## Endpoints
+
+| Url                              | Http Method | Request Body | Response                                | Table      |
+|----------------------------------|-------------|--------------|-----------------------------------------|------------|
+| /login                           | POST        | JSON creds   | Authenticated, and user_id and username | Users      |
+| /users                           | POST        | JSON user    | User                                    | Users      |
+| /users/{user_id}/posts           | GET         | none         | All posts by user                       | Posts      |
+| /users/{user_id}/comments        | GET         | none         | All comments by user                    | Comments   |
+| /subreadits                      | GET         | none         | All subreadits                          | Subreadits |
+| /subreadits/{subreadit_id}/posts | GET         | none         | All posts in subreadit                  | Posts      |
+| /posts                           | GET         | none         | all posts                               | Posts      |
+| /posts                           | POST        | JSON post    | Post                                    | Posts      |
+| /posts/{post_id}                 | PUT         | JSON post    | Post                                    | Posts      |
+| /posts/{post_id}                 | DELETE      | none         | Post                                    | Posts      |
+| /posts/{post_id}/comments/root   | GET         | none         | All root comments in post               | Comments   |
+| /comments                        | POST        | JSON comment | Comment                                 | Comments   |
+| /comments/{comment_id}/comments  | POST        | JSON comment | Comment                                 | Comments   |
+| /comments/{comment_id}/children  | GET         | none         | All children of that comment            | Comments   |
