@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: whitesmoke;
+}
+
+.arrow {
+  width: 1em;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.picture {
+  height: 100%;
+}
+
+.post-picture {
+  height: 100%;
+  width: 8em;
+  padding: .2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture-container {
+  height: 90%;
+  width: 90%;
+  /* background-image: url("https://i.redd.it/sslbm01wbaj31.jpg"); */
+  background-image: url("https://i.redd.it/yo4zi8y84ej31.png");
+  background-color: whitesmoke;
+  background-size: cover;
+  border-radius: 0.3em;
+}
+
+.container {
+  margin: 0 12vw;
+}
+
+nav  {
+  padding: .75em;
+  background-color: #EA7317;
+  color: white;
+  margin-bottom: 3em;
+}
+
+nav .links a, nav .logo a {
+
+  color: white;
+}
+
+nav > .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-box {
+  height: 2em;
+  width: 25vw;
+  border-radius: 0.3em;
+  padding: 0.2em;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  margin: 0 1em;
+}
+
+.main-home {
+  display: flex;
+  flex-direction: row;
+}
+
+.subreadits {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.subreadit {
+  border: 1px solid gainsboro;
+  padding: 0.5em;
+  font-size: 1.1em;
+  background-color: white;
+}
+
+.subreadit:hover, .subreadit-selected {
+  border-left: 3px solid #EA7317;
+}
+
+.posts {
+  flex: 3;
+  margin-right: 3em;
+}
+
+.post {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 6em;
+  background-color: white;
+  border: 1px solid gainsboro;
+  padding: 0.5em;
+}
+
+.post-votes {
+  padding: 0.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-post .post-votes {
+  height: 100%;
+}
+
+.votes {
+  margin: 0.3em 0;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-title {
+  margin: 0 0em;
+  font-weight: bold;
+  font-size : 1.2em;
+}
+
+.post-info > * {
+  margin: 0.2em 0;
+}
+
+.single-post {
+  border: 2px solid gainsboro;
+  padding: 0.4em;
+  background-color: white;
+}
+
+.single-post-info {
+  margin-left: 1em;
+}
+
+.single-post-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.single-post-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.4em 0;
+}
+
+.form-button {
+  border-radius: 0.5em;
+  background-color: #2364AA;
+  padding: 0.7em;
+  color: white;
+  margin-right:auto;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comments {
+  border: 2px solid gainsboro;
+  background-color: white;
+  padding:0.4em;
+  margin: 2em 0;
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2em;
+}
+
+.comment-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-info {
+  margin-left: 1em;
+}
+
+.threadline-container {
+  flex: 1;
+  width: 100%;
+  position: relative;
+}
+
+.threadline {
+  position: absolute;
+  left: 44%;
+  border-left: 3px solid gainsboro;
+  /* border-radius: .7em; */
+  height: 100%;
+  width: 100%;
+}
+
+.comment-form-input {
+  height: 10em;
+  width: 75%;
+}

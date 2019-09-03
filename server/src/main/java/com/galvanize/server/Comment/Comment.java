@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "accounts")
+@Table(name = "comments")
 public class Comment {
 
     @Id
