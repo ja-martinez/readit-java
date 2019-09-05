@@ -77,12 +77,6 @@ public class PostController {
         return response;
     }
 
-//    @PostMapping("/posts")
-//    public Post createPost(@RequestBody Post post) {
-//        System.out.println(post);
-//        return postRepository.save(post);
-//    }
-
     // no need to return the whole object so it's returning post type
     @PostMapping("/posts")
     public Post createPost(@RequestBody HashMap<String, String> info) {

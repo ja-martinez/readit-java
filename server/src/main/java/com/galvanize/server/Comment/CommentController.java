@@ -37,7 +37,7 @@ public class CommentController {
                 .collect(Collectors.toList());
         return response;
     }
-    
+
     @GetMapping("/users/{userId}/comments")
     public List getCommentsByUser(@PathVariable String userId) {
         List<Object[]> comments = commentRepository.getCommentsByUserId(Long.parseLong(userId));
