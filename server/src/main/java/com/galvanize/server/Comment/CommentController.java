@@ -66,8 +66,8 @@ public class CommentController {
         return commentRepository.save(comment);
     }
 
-    @PostMapping("/comments/{commentId}/comments")
-    public Comment createSubComment(@RequestBody HashMap<String, String> info) {
+    @PostMapping("/comments/{parentId}/comments")
+    public Comment createSubComment(@PathVariable String parentId, @RequestBody HashMap<String, String> info) {
         Comment comment = new Comment();
         comment.setContent(info.get("content"));
         comment.setUser(userRepository.findById(Long.parseLong(info.get("user_id"))));
@@ -76,7 +76,7 @@ public class CommentController {
 
         Comment_relationship commentRelationship = new Comment_relationship();
         commentRelationship.setChild(commentResponse);
-        commentRelationship.setParent(commentRepository.findById(Long.parseLong(info.get("parent_id"))));
+        commentRelationship.setParent(commentRepository.findById(Long.parseLong(parentId)));
         comment_relationshipRepository.save(commentRelationship);
 
         return commentResponse;

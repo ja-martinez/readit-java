@@ -3,30 +3,30 @@ import React, { useState } from "react";
 import arrowDown from "../img/arrow-down-solid.svg";
 import arrowUp from "../img/arrow-up-solid.svg";
 
-export default function Votes({ postId, votes, upvote, downvote }) {
+export default function Votes({ id, votes, upvote, downvote }) {
   const [voteStatus, setVoteStatus] = useState("none");
 
-  const clickVote = (action, postId) => {
+  const clickVote = (action, id) => {
     if (action === "upvote") {
       if (voteStatus === "none") {
-        upvote(postId);
+        upvote(id);
         setVoteStatus("upvote");
       } else if (voteStatus === "downvote") {
-        upvote(postId, true);
+        upvote(id, true);
         setVoteStatus("upvote");
       } else if (voteStatus === 'upvote') {
-        downvote(postId)
+        downvote(id)
         setVoteStatus('none')
       }
     } else if (action === "downvote") {
       if (voteStatus === "none") {
-        downvote(postId);
+        downvote(id);
         setVoteStatus("downvote");
       } else if (voteStatus === "upvote") {
-        downvote(postId, true);
+        downvote(id, true);
         setVoteStatus("downvote");
       } else if (voteStatus === 'downvote') {
-        upvote(postId)
+        upvote(id)
         setVoteStatus('none')
       }
     }
@@ -36,7 +36,7 @@ export default function Votes({ postId, votes, upvote, downvote }) {
     <div className="post-votes">
       <img
         onClick={() => {
-          clickVote("upvote", postId);
+          clickVote("upvote", id);
         }}
         className={
           voteStatus === "upvote"
@@ -49,7 +49,7 @@ export default function Votes({ postId, votes, upvote, downvote }) {
       <div className="votes">{votes}</div>
       <img
         onClick={() => {
-          clickVote("downvote", postId);
+          clickVote("downvote", id);
         }}
         className={
           voteStatus === "downvote"
