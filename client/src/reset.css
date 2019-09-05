@@ -42,7 +42,7 @@ table {
 	border-spacing: 0;
 }
 
-button {
+button, input[type='submit'] {
   /*Reset's every elements apperance*/
   background: none repeat scroll 0 0 transparent;
   border: medium none;
@@ -66,4 +66,8 @@ input {
 a {
   color: black;
   text-decoration: none; /* no underline */
+}
+
+a[href], input[type='submit'], input[type='image'], select, button, .pointer {
+  cursor: pointer;
 }

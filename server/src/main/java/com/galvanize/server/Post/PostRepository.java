@@ -19,7 +19,9 @@ public interface PostRepository extends JpaRepository <Post, Long> {
     ArrayList<Object[]> selectPostsBySubreaditId(int subreadit_id);
 
     @Query(value = "SELECT posts.id, posts.title, posts.content, posts.link_url, posts.votes, users.username, subreadits.name FROM posts JOIN users ON posts.user_id = users.id JOIN subreadits ON posts.subreadit_id = subreadits.id WHERE posts.id = ?1", nativeQuery = true)
-    Object[] selectPostById(int id);
+    ArrayList<Object[]> selectPostById(int id);
+
+    Post findById(long id);
 
 
     @Query(value = "UPDATE posts SET title = ?1, content = ?2, link_url= ?3 WHERE id = ?4 RETURNING *", nativeQuery = true)

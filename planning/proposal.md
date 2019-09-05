@@ -61,9 +61,8 @@ Readit is an alternative to the default Reddit lurking experience. It is aimed a
 | /posts/{post_id}/downvote        | PATCH       | none         | one post                                | Posts      |
 | /posts/{post_id}                 | PUT         | JSON post    | Post                                    | Posts      |
 | /posts/{post_id}                 | DELETE      | none         | Post                                    | Posts      |
-| /posts/{post_id}/comments/root   | GET         | none         | All root comments in post               | Comments   |
+| /posts/{post_id}/comments/       | GET         | none         | All comments in post                    | Comments   |
 | /comments                        | POST        | JSON comment | Comment                                 | Comments   |
 | /comments/{comment_id}/upvote    | PATCH       | JSON comment | Comment                                 | Comments   |
 | /comments/{comment_id}/downvote  | PATCH       | JSON comment | Comment                                 | Comments   |
 | /comments/{comment_id}/comments  | POST        | JSON comment | Comment                                 | Comments   |
-| /comments/{comment_id}/comments  | GET         | none         | All children of that comment            | Comments   |

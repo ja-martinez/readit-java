@@ -1,24 +1,29 @@
 import React from "react";
+import { Link } from 'react-router-dom'
+import Votes from './Votes'
 
-export default function Post({ post }) {
+
+
+export default function Post({ post, upvote, downvote }) {
+
+  const imageStyle = {
+    backgroundImage: `url(${post.link_url})`
+  };
+
   return (
     <div className="post">
-      <div className="post-votes">
-        <img className="arrow" src="arrow-up-solid.svg" alt="" />
-        <div className="votes">{post.votes}</div>
-        <img className="arrow" src="arrow-down-solid.svg" alt="" />
-      </div>
+      <Votes id={post.id} votes={post.votes} upvote={upvote} downvote={downvote} />
       <div className="post-picture">
-        <div className="picture-container"></div>
+        <div className="picture-container" style={imageStyle}></div>
       </div>
       <div className="post-content">
         <div className="post-title">
-          {post.content}
+          <Link to={`/posts/${post.id}`}>{post.title}</Link>
         </div>
         <div className="post-info">
-          <div className="post-subreadit">r/technology</div>
-          <div className="post-author">Pepino_gonzalez</div>
-          <div className="post-date">5 Hours ago</div>
+          <div className="post-subreadit">{`r/${post.subreadit}`}</div>
+          <div className="post-author">{`u/${post.username}`}</div>
+          {/* <div className="post-date">5 Hours ago</div> */}
         </div>
       </div>
     </div>

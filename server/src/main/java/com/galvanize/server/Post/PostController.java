@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("api/v1")
 public class PostController {
@@ -55,7 +56,7 @@ public class PostController {
 
     @GetMapping("/posts/{post_id}")
     public PostResponse getPostById(@PathVariable String post_id) {
-        Object[] post = postRepository.selectPostById(Integer.parseInt(post_id));
+        Object[] post = postRepository.selectPostById(Integer.parseInt(post_id)).get(0);
         PostResponse response = new PostResponse(post[0], post[1], post[2], post[3], post[4], post[5], post[6]);
         return response;
     }
@@ -63,14 +64,14 @@ public class PostController {
     @PatchMapping("/posts/{post_id}")
     public PostResponse updatePost(@PathVariable String post_id, @RequestBody Post postBody) {
         postRepository.updatePost(postBody.getTitle(), postBody.getContent(), postBody.getLink_url(), Integer.parseInt(post_id));
-        Object[] post = postRepository.selectPostById(Integer.parseInt(post_id));
+        Object[] post = postRepository.selectPostById(Integer.parseInt(post_id)).get(0);
         PostResponse response = new PostResponse(post[0], post[1], post[2], post[3], post[4], post[5], post[6]);
         return response;
     }
 
     @DeleteMapping("/posts/{post_id}")
     public PostResponse deletePost(@PathVariable String post_id) {
-        Object[] post = postRepository.selectPostById(Integer.parseInt(post_id));
+        Object[] post = postRepository.selectPostById(Integer.parseInt(post_id)).get(0);
         PostResponse response = new PostResponse(post[0], post[1], post[2], post[3], post[4], post[5], post[6]);
         postRepository.deleteById(Long.parseLong(post_id));
         return response;

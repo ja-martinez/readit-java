@@ -9,6 +9,10 @@ body {
   width: 1em;
 }
 
+.vote-selected {
+  background-color: #EA7317;
+}
+
 .logo {
   font-weight: bold;
   font-size: 1.3em;
@@ -21,7 +25,7 @@ body {
 .post-picture {
   height: 100%;
   width: 8em;
-  padding: .2em;
+  /* padding: .2em; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +52,7 @@ nav  {
   margin-bottom: 3em;
 }
 
-nav .links a, nav .logo a {
+nav .links a, nav .links button, nav .logo a {
 
   color: white;
 }
@@ -74,6 +78,11 @@ nav > .container {
 
 .link {
   margin: 0 1em;
+}
+
+button {
+  margin: 0;
+  font-size: 100%;
 }
 
 .main-home {
@@ -224,4 +233,70 @@ nav > .container {
 .comment-form-input {
   height: 10em;
   width: 75%;
+}
+
+/* form stuff */
+.login-register .card {
+  width: 35%;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid gainsboro;
+  border-radius: 1em;
+  margin: 2em auto;
+  padding: 2em;
+  color: #184676;
+}
+
+.card-header {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+form input, select, textarea {
+  margin-bottom: 1em;
+  border: 1px solid gainsboro;
+  border-radius: 0.8em;
+  padding: 0.5em;
+  font-size: 0.8em;
+  background-color: white
+}
+
+input[type='submit'] {
+  display: inline-block;
+  background-color: #2364AA;
+  color: white;
+}
+
+.login input[type='submit'] {
+  width: 3.5em;
+  padding: 0.5em;
+}
+.register input[type='submit'] {
+  width: 5em;
+  padding: 0.5em;
+}
+
+.create-post .card {
+  width:50%;
+}
+
+.create-post input[type="submit"] {
+  padding: 0.7em;
+  width: 4.5em;
+}
+
+.create-post-link a {
+  /* border: 1px solid gainsboro; */
+  border-radius: 0.8em;
+  background-color: #2364AA;
+  padding: 0.5em;
+  color: white;
 }

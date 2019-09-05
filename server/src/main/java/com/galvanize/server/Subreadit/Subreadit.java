@@ -1,6 +1,7 @@
 package com.galvanize.server.Subreadit;
 
 import lombok.Data;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 
@@ -12,6 +13,6 @@ public class Subreadit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(unique=true)
     private String name;
 }
