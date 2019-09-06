@@ -41,9 +41,6 @@ body {
   border-radius: 0.3em;
 }
 
-.container {
-  margin: 0 12vw;
-}
 
 nav  {
   padding: .75em;
@@ -167,6 +164,7 @@ button {
 
 .single-post-info {
   margin-left: 1em;
+  width: 100%;
 }
 
 .single-post-header {
@@ -299,4 +297,28 @@ input[type='submit'] {
   background-color: #2364AA;
   padding: 0.5em;
   color: white;
+}
+
+.comment-author-date {
+  font-weight: bold;
+}
+
+.container {
+  margin: 0 12vw;
+}
+
+.comments-header {
+  margin-top: 0;
+}
+
+.single-post-page {
+  margin: 0 25%;
+}
+
+.comment-reply {
+  font-size: 0.8em;
+}
+
+.single-post-sub-date {
+  font-weight: bold;
 }

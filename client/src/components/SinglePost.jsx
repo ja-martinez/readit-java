@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Votes from "./Votes";
 import Comment from "./Comment";
+import { AuthConsumer } from "./AuthContext";
 
 export default function SinglePost({ match }) {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [rootCommentContent, setRootCommentContent] = useState('');
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -40,12 +42,11 @@ export default function SinglePost({ match }) {
       }
     });
     if (res.ok) {
-      const json = res.json();
-      const commentId = json.id;
+      const json = await res.json();
       setComments([
         ...comments,
         {
-          id: commentId,
+          id: json.id,
           content,
           votes: json.votes,
           parentId: null,
@@ -55,13 +56,14 @@ export default function SinglePost({ match }) {
     }
   };
 
-  const createSubComment = async (
+  const createSubcomment = async (
     postId,
     userId,
     username,
     content,
     parentId
   ) => {
+    console.log(parentId);
     const res = await fetch(
       `http://localhost:8080/api/v1/comments/${parentId}/comments`,
       {
@@ -77,7 +79,7 @@ export default function SinglePost({ match }) {
       }
     );
     if (res.ok) {
-      const json = res.json();
+      const json = await res.json();
       const commentId = json.id;
       setComments([
         ...comments,
@@ -276,54 +278,77 @@ export default function SinglePost({ match }) {
     }
   };
 
-  const rootCommentsJsx = comments
-    .filter(comment => comment.parentId === null)
-    .map(comment => (
-      <Comment
-        key={comment.id}
-        comments={comments}
-        comment={comment}
-        upvoteComment={upvoteComment}
-        downvoteComment={downvoteComment}
-      />
-    ));
-
   console.log(comments);
   return (
-    <main>
-      <div className="single-post">
-        <div className="single-post-header">
-          <Votes
-            id={post.id}
-            upvote={upvotePost}
-            downvote={downvotePost}
-            votes={post.votes}
-          />
-          <div className="single-post-info">
-            <div className="single-post-sub-date">{`r/${post.subreadit}`}</div>
-            <div className="single-post-title">{post.title}</div>
-            <div className="single-post-link"></div>
-            <div className="single-post-content">
-              <p>{post.content}</p>
+    <main className="single-post-page">
+      <AuthConsumer>
+        {({ user }) => (
+          <>
+            <div className="single-post">
+              <div className="single-post-header">
+                <Votes
+                  id={post.id}
+                  upvote={upvotePost}
+                  downvote={downvotePost}
+                  votes={post.votes}
+                />
+                <div className="single-post-info">
+                  <div className="single-post-sub-date">{`r/${post.subreadit}`}</div>
+                  <div className="single-post-title">{post.title}</div>
+                  <div className="single-post-link"></div>
+                  <div className="single-post-content">
+                    <p>{post.content}</p>
+                  </div>
+                  <div className="create-comment">
+                    <h2>Add a Comment!</h2>
+                    <form
+                      className="comment-form"
+                      onSubmit={async e => {
+                        e.preventDefault();
+                        console.log('hola')
+                        await createRootComment(post.id, user.id, user.username, rootCommentContent);
+                        setRootCommentContent('');
+                      }}
+                    >
+                      <textarea
+                        className="comment-form-input"
+                        name="comment"
+                        id="comment"
+                        value={rootCommentContent}
+                        onChange={
+                          e => {
+                            setRootCommentContent(e.target.value);
+                          }
+                        }
+                      ></textarea>
+                      <button className="form-button" type="submit">Add Comment</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="create-comment">
-              <h2>Add a Comment!</h2>
-              <form className="comment-form">
-                <textarea
-                  className="comment-form-input"
-                  name="comment"
-                  id="comment"
-                ></textarea>
-                <button className="form-button">Add Comment</button>
-              </form>
+            <div className="comments">
+              <h2 className="comments-header">Comments</h2>
+              {
+                comments
+                .filter(comment => comment.parentId === null)
+                .map(comment => (
+                  <Comment
+                    key={comment.id}
+                    comments={comments}
+                    comment={comment}
+                    upvoteComment={upvoteComment}
+                    downvoteComment={downvoteComment}
+                    createSubcomment={createSubcomment}
+                    user={user}
+                    postId={post.id}
+                  />
+                ))
+              }
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="comments">
-        <h2>Comments</h2>
-        {rootCommentsJsx}
-      </div>
+          </>
+        )}
+      </AuthConsumer>
     </main>
   );
 }

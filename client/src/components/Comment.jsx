@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Votes from "./Votes";
 
 export default function Comment({
   comments,
   comment,
   upvoteComment,
-  downvoteComment
+  downvoteComment,
+  createSubcomment,
+  user,
+  postId
 }) {
+  const [showForm, setShowForm] = useState(false);
+  const [subcommentContent, setSubcommentContent] = useState("");
+
+  const toggleForm = () => setShowForm(!showForm);
+
   const subComments = comments.filter(
     subComment => comment.id === subComment.parentId
   );
   const subCommentsJsx = subComments.map(subComment => (
     <Comment
+      key={subComment.id}
       comments={comments}
       comment={subComment}
       upvoteComment={upvoteComment}
       downvoteComment={downvoteComment}
+      createSubcomment={createSubcomment}
+      user={user}
+      postId={postId}
     />
   ));
 
@@ -37,7 +49,39 @@ export default function Comment({
         <div className="comment-content">
           <p>{comment.content}</p>
         </div>
-        { subCommentsJsx }
+        <button onClick={toggleForm} className="comment-reply">
+          Reply to this Comment
+        </button>
+        {showForm && (
+          <form
+            className="subcomment-form"
+            onSubmit={async e => {
+              console.log(user)
+              console.log(comment)
+              e.preventDefault();
+              await createSubcomment(
+                postId,
+                user.id,
+                user.username,
+                subcommentContent,
+                comment.id
+              );
+              setSubcommentContent('');
+            }}
+          >
+            <textarea
+              className="subcomment-form-input"
+              name="subcomment"
+              id="subcomment"
+              value={subcommentContent}
+              onChange={e => {
+                setSubcommentContent(e.target.value);
+              }}
+            ></textarea>
+            <button className="form-button">Add Comment</button>
+          </form>
+        )}
+        {subCommentsJsx}
       </div>
     </div>
   );
