@@ -295,7 +295,9 @@ export default function SinglePost({ match }) {
                 <div className="single-post-info">
                   <div className="single-post-sub-date">{`r/${post.subreadit}`}</div>
                   <div className="single-post-title">{post.title}</div>
-                  <div className="single-post-link"></div>
+                  <div className="single-post-link">
+                    <img className="single-post-picture" src={post.link_url} alt=""/>
+                  </div>
                   <div className="single-post-content">
                     <p>{post.content}</p>
                   </div>

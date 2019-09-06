@@ -7,7 +7,7 @@ import Votes from './Votes'
 export default function Post({ post, upvote, downvote }) {
 
   const imageStyle = {
-    backgroundImage: `url(${post.link_url})`
+    backgroundImage: `url('${post.link_url}')`
   };
 
   return (

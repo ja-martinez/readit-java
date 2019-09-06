@@ -31,11 +31,18 @@ body {
   align-items: center;
 }
 
+.single-post-link {
+  width: 100%;
+}
+
+.single-post-picture {
+  max-width: 75%;
+  max-height: 75vh;
+}
+
 .picture-container {
   height: 90%;
   width: 90%;
-  /* background-image: url("https://i.redd.it/sslbm01wbaj31.jpg"); */
-  background-image: url("https://i.redd.it/yo4zi8y84ej31.png");
   background-color: whitesmoke;
   background-size: cover;
   border-radius: 0.3em;
