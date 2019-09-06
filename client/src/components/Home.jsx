@@ -156,8 +156,9 @@ export default function Home() {
     }
   };
 
-  const addPost = e => {};
   let postsJsx;
+
+  posts.sort((post1, post2) => post2.votes - post1.votes);
 
   if (selectedSubreadit === "everything") {
     postsJsx = posts.map(post => (

@@ -56,8 +56,6 @@ export default function Comment({
           <form
             className="subcomment-form"
             onSubmit={async e => {
-              console.log(user)
-              console.log(comment)
               e.preventDefault();
               await createSubcomment(
                 postId,

@@ -63,7 +63,6 @@ export default function SinglePost({ match }) {
     content,
     parentId
   ) => {
-    console.log(parentId);
     const res = await fetch(
       `http://localhost:8080/api/v1/comments/${parentId}/comments`,
       {
@@ -278,7 +277,8 @@ export default function SinglePost({ match }) {
     }
   };
 
-  console.log(comments);
+  comments.sort((comment1, comment2) => comment2.votes - comment1.votes);
+
   return (
     <main className="single-post-page">
       <AuthConsumer>
@@ -305,7 +305,6 @@ export default function SinglePost({ match }) {
                       className="comment-form"
                       onSubmit={async e => {
                         e.preventDefault();
-                        console.log('hola')
                         await createRootComment(post.id, user.id, user.username, rootCommentContent);
                         setRootCommentContent('');
                       }}
