@@ -4,7 +4,7 @@ import Subreadits from "./Subreadits";
 
 // find a way to implement a way to load the subreadits and aso have a selected subreadit category
 
-export default function Home() {
+export default function Home({ history }) {
   const [posts, setPosts] = useState([]);
   const [subreadits, setSubreadits] = useState([]);
   const [selectedSubreadit, setSelectedSubreadit] = useState("everything");
@@ -162,11 +162,11 @@ export default function Home() {
 
   if (selectedSubreadit === "everything") {
     postsJsx = posts.map(post => (
-      <Post key={post.id} post={post} upvote={upvote} downvote={downvote} />
+      <Post key={post.id} post={post} upvote={upvote} downvote={downvote} history={history} />
     ));
   } else {
     postsJsx = posts.filter(post => post.subreadit === selectedSubreadit).map(post => (
-      <Post key={post.id} post={post} upvote={upvote} downvote={downvote} />
+      <Post key={post.id} post={post} upvote={upvote} downvote={downvote} history={history} />
     ));
   }
 

@@ -3,10 +3,10 @@ import Votes from "./Votes";
 import Comment from "./Comment";
 import { AuthConsumer } from "./AuthContext";
 
-export default function SinglePost({ match }) {
+export default function SinglePost({ match, history }) {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
-  const [rootCommentContent, setRootCommentContent] = useState('');
+  const [rootCommentContent, setRootCommentContent] = useState("");
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -291,12 +291,17 @@ export default function SinglePost({ match }) {
                   upvote={upvotePost}
                   downvote={downvotePost}
                   votes={post.votes}
+                  history={history}
                 />
                 <div className="single-post-info">
                   <div className="single-post-sub-date">{`r/${post.subreadit}`}</div>
                   <div className="single-post-title">{post.title}</div>
                   <div className="single-post-link">
-                    <img className="single-post-picture" src={post.link_url} alt=""/>
+                    <img
+                      className="single-post-picture"
+                      src={post.link_url}
+                      alt=""
+                    />
                   </div>
                   <div className="single-post-content">
                     <p>{post.content}</p>
@@ -307,8 +312,17 @@ export default function SinglePost({ match }) {
                       className="comment-form"
                       onSubmit={async e => {
                         e.preventDefault();
-                        await createRootComment(post.id, user.id, user.username, rootCommentContent);
-                        setRootCommentContent('');
+                        if (user.username) {
+                          await createRootComment(
+                            post.id,
+                            user.id,
+                            user.username,
+                            rootCommentContent
+                          );
+                          setRootCommentContent("");
+                        } else {
+                          history.push('/login')
+                        }
                       }}
                     >
                       <textarea
@@ -316,13 +330,14 @@ export default function SinglePost({ match }) {
                         name="comment"
                         id="comment"
                         value={rootCommentContent}
-                        onChange={
-                          e => {
-                            setRootCommentContent(e.target.value);
-                          }
-                        }
+                        onChange={e => {
+                          setRootCommentContent(e.target.value);
+                        }}
+                        required
                       ></textarea>
-                      <button className="form-button" type="submit">Add Comment</button>
+                      <button className="form-button" type="submit">
+                        Add Comment
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -330,8 +345,7 @@ export default function SinglePost({ match }) {
             </div>
             <div className="comments">
               <h2 className="comments-header">Comments</h2>
-              {
-                comments
+              {comments
                 .filter(comment => comment.parentId === null)
                 .map(comment => (
                   <Comment
@@ -343,9 +357,9 @@ export default function SinglePost({ match }) {
                     createSubcomment={createSubcomment}
                     user={user}
                     postId={post.id}
+                    history={history}
                   />
-                ))
-              }
+                ))}
             </div>
           </>
         )}

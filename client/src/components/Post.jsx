@@ -1,18 +1,21 @@
 import React from "react";
-import { Link } from 'react-router-dom'
-import Votes from './Votes'
+import { Link } from "react-router-dom";
+import Votes from "./Votes";
 
-
-
-export default function Post({ post, upvote, downvote }) {
-
+export default function Post({ post, upvote, downvote, history }) {
   const imageStyle = {
     backgroundImage: `url('${post.link_url}')`
   };
 
   return (
     <div className="post">
-      <Votes id={post.id} votes={post.votes} upvote={upvote} downvote={downvote} />
+      <Votes
+        id={post.id}
+        votes={post.votes}
+        upvote={upvote}
+        downvote={downvote}
+        history={history}
+      />
       <div className="post-picture">
         <div className="picture-container" style={imageStyle}></div>
       </div>

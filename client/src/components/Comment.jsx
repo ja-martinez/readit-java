@@ -8,7 +8,8 @@ export default function Comment({
   downvoteComment,
   createSubcomment,
   user,
-  postId
+  postId,
+  history
 }) {
   const [showForm, setShowForm] = useState(false);
   const [subcommentContent, setSubcommentContent] = useState("");
@@ -28,6 +29,7 @@ export default function Comment({
       createSubcomment={createSubcomment}
       user={user}
       postId={postId}
+      history={history}
     />
   ));
 
@@ -39,6 +41,7 @@ export default function Comment({
           upvote={upvoteComment}
           downvote={downvoteComment}
           votes={comment.votes}
+          history={history}
         />
         <div className="threadline-container">
           <div className="threadline"></div>
@@ -57,14 +60,18 @@ export default function Comment({
             className="subcomment-form"
             onSubmit={async e => {
               e.preventDefault();
-              await createSubcomment(
-                postId,
-                user.id,
-                user.username,
-                subcommentContent,
-                comment.id
-              );
-              setSubcommentContent('');
+              if (user.username) {
+                await createSubcomment(
+                  postId,
+                  user.id,
+                  user.username,
+                  subcommentContent,
+                  comment.id
+                );
+                setSubcommentContent("");
+              } else {
+                history.push("/login");
+              }
             }}
           >
             <textarea
@@ -75,6 +82,7 @@ export default function Comment({
               onChange={e => {
                 setSubcommentContent(e.target.value);
               }}
+              required
             ></textarea>
             <button className="form-button">Add Comment</button>
           </form>
